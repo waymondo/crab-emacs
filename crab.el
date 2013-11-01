@@ -99,6 +99,10 @@
   (interactive "MURL: ")
   (crab-eval (format "window.location = \"%s\";" url)))
 
+(defun crab-console-log (js)
+  (interactive "MConsole.log: ")
+  (crab-eval (format "console.log(%s);" js)))
+
 (defun crab-show-link-hints (hint)
   (interactive
    (list
@@ -121,6 +125,7 @@
 (defcrabcommand crab-forward "window.history.forward();")
 (defcrabcommand crab-previous "document.body.scrollTop -= 100")
 (defcrabcommand crab-next "document.body.scrollTop += 100;")
+(defcrabcommand crab-reload "window.location.reload();")
 (defcrabcommand crab-scroll-up "document.body.scrollTop -= 1000;")
 (defcrabcommand crab-scroll-down  "document.body.scrollTop += 1000;")
 (defcrabcommand crab-beginning-of-page "document.body.scrollTop = 0;")
