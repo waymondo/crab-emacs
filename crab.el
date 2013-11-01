@@ -22,6 +22,8 @@
 
 (defvar crab-server nil "WebSocket server for Crab browsing.")
 (defvar crab-client nil "WebSocket client for Crab browsing.")
+(defvar crab-coffee-command
+  (if (boundp 'coffee-command) coffee-command "coffee") "Shell command for compiling CoffeeScript")
 
 ;; Keys for minor mode
 (defvar crab-mode-map nil "Keymap used for Crab browsing.")
@@ -102,6 +104,13 @@
 (defun crab-console-log (js)
   (interactive "MConsole.log: ")
   (crab-eval (format "console.log(%s);" js)))
+
+(defun crab-eval-coffee (code)
+  (interactive "MCoffeeScript: ")
+  (crab-eval (shell-command-to-string
+              (format "%s -e -p \"%s\""
+                      crab-coffee-command
+                      (replace-regexp-in-string (regexp-quote "\"") "\\\"" code t t)))))
 
 (defun crab-show-link-hints (hint)
   (interactive
