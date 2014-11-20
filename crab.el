@@ -56,6 +56,21 @@
   crab-mode
   crab-mode)
 
+;;;###autoload
+(define-minor-mode crab-reload-on-save-mode
+  "Toggle auto reloading with crab on save."
+  nil
+  nil
+  nil
+  (if crab-reload-on-save-mode
+      (add-hook 'after-save-hook #'crab-reload)
+    (remove-hook 'after-save-hook #'crab-reload)))
+
+;;;###autoload
+(define-globalized-minor-mode global-crab-reload-on-save-mode
+  crab-reload-on-save-mode
+  crab-reload-on-save-mode)
+
 ;; WebSocket server
 
 ;;;###autoload
