@@ -66,11 +66,6 @@
       (add-hook 'after-save-hook #'crab-reload)
     (remove-hook 'after-save-hook #'crab-reload)))
 
-;;;###autoload
-(define-globalized-minor-mode global-crab-reload-on-save-mode
-  crab-reload-on-save-mode
-  crab-reload-on-save-mode)
-
 ;; WebSocket server
 
 ;;;###autoload
